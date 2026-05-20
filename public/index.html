@@ -1,24 +1,103 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Chat App</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Mobile ke liye full screen layout */
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: #0b141a; /* Dark background */
+      color: white;
+      overflow: hidden;
+    }
+
+    .chat-container {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      width: 100%;
+    }
+
+    /* Header styling */
+    h2 {
+      margin: 0;
+      padding: 15px;
+      background-color: #1f2c33;
+      font-size: 18px;
+      text-align: center;
+      border-bottom: 1px solid #2a3942;
+    }
+
+    /* Message list jo bachi hui jagah lega aur scroll hoga */
+    #messages {
+      flex: 1;
+      overflow-y: auto;
+      list-style: none;
+      padding: 15px;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    /* Input area hamesha niche rahega */
+    .input-area {
+      display: flex;
+      padding: 10px;
+      background-color: #1f2c33;
+      align-items: center;
+      gap: 10px;
+    }
+
+    #msg {
+      flex: 1;
+      padding: 12px 15px;
+      border-radius: 25px;
+      border: none;
+      background-color: #2a3942;
+      color: white;
+      font-size: 16px;
+      outline: none;
+    }
+
+    button {
+      padding: 10px 20px;
+      border-radius: 25px;
+      border: none;
+      background-color: #00a884;
+      color: white;
+      font-weight: bold;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:active {
+      background-color: #008f6f;
+    }
+  </style>
 </head>
 
 <body>
 
-<div class="chat">
-
+<div class="chat-container">
   <h2>💬 2 User Chat (<span id="users"></span>)</h2>
 
   <ul id="messages"></ul>
 
-  <div class="input">
-    <input id="msg" placeholder="Type message...">
+  <div class="input-area">
+    <input id="msg" placeholder="Type message..." autocomplete="off">
     <button onclick="sendText()">Send</button>
   </div>
-
 </div>
 
 <script src="/socket.io/socket.io.js"></script>
